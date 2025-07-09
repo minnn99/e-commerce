@@ -10,6 +10,11 @@ class Admin extends Authenticatable
 {
     use Notifiable;
 
+    /**
+     * The name of the "created at" column.
+     */
+    const CREATED_AT = 'crated_at';
+
     protected $fillable = [
         'name',
         'email',

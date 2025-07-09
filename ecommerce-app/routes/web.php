@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/itemlist', [ProductController::class, 'index'])->name('products.index');
@@ -15,13 +16,21 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::delete('/cart/{id}', [CartController::class, 'remove'])->name('cart.remove');
 
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
+// User Authentication Routes
+Route::get('/login', [UserController::class, 'showLoginForm'])->name('user.login');
+Route::post('/login', [UserController::class, 'login']);
+Route::get('/registration', [UserController::class, 'showRegistrationForm'])->name('user.registration');
+Route::post('/registration/confirm', [UserController::class, 'showRegistrationConfirm'])->name('user.registration.confirm');
+Route::post('/registration/register', [UserController::class, 'register'])->name('user.register');
+Route::post('/logout', [UserController::class, 'logout'])->name('user.logout');
 
-Route::get('/registration', function () {
-    return view('registration');
-})->name('registration');
+// Registration completion page
+Route::get('/registrationconfirm', function () {
+    return redirect()->route('user.registration');
+});
+Route::get('/registrationcomplete', function () {
+    return view('registrationcomplete');
+})->name('registration.complete');
 
 Route::prefix('admin')->group(function () {
     Route::get('/login', [AdminController::class, 'loginForm'])->name('admin.login');

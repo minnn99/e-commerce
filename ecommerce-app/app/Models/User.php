@@ -13,6 +13,11 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     /**
+     * The name of the "created at" column.
+     */
+    const CREATED_AT = 'crated_at';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var list<string>
