@@ -5,7 +5,8 @@
   </div>
   <div class="w-layout-blockcontainer w-container">
     <div class="w-form">
-      <form action="admin" id="email-form" method="get">
+      <form action="{{ route('admin.item.store') }}" id="email-form" method="post">
+        @csrf
         <label>商品名</label>
         <input class="w-input" maxlength="256" name="name">
         <label>税抜き値段</label>
@@ -30,7 +31,7 @@
           <div class="text-block-8">FFFFFFFFFFFFFFFF.png</div>
         </div>
         <div class="div-block-10">
-          <a href="admin" class="button-16 w-button">戻る</a>
+          <a href="{{ route('admin.dashboard') }}" class="button-16 w-button">戻る</a>
           <input type="submit" class="submit-button-5 w-button" value="登録">
         </div>
       </form>

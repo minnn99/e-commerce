@@ -36,4 +36,11 @@ Route::prefix('admin')->group(function () {
     Route::get('/login', [AdminController::class, 'loginForm'])->name('admin.login');
     Route::post('/login', [AdminController::class, 'login']);
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::post('/logout', [AdminController::class, 'logout'])->name('admin.logout');
+    
+    // 管理画面の各機能
+    Route::get('/useredit', [AdminController::class, 'userEdit'])->name('admin.user.edit');
+    Route::post('/useredit', [AdminController::class, 'userStore'])->name('admin.user.store');
+    Route::get('/itemedit', [AdminController::class, 'itemEdit'])->name('admin.item.edit');
+    Route::post('/itemedit', [AdminController::class, 'itemStore'])->name('admin.item.store');
 });

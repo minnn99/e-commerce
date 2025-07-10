@@ -15,19 +15,19 @@
       <h1 class="heading-12">■サイズ選択</h1>
       <div class="w-layout-hflex">
         <h1 class="heading-11">S</h1>
-        <a href="cart" class="button w-button">カートに追加する</a>
+        <a href="{{ route('cart.index') }}" class="button w-button">カートに追加する</a>
       </div>
       <div class="w-layout-hflex">
         <h1 class="heading-10">M</h1>
-        <a href="cart" class="button w-button">カートに追加する</a>
+        <a href="{{ route('cart.index') }}" class="button w-button">カートに追加する</a>
       </div>
       <div class="w-layout-hflex">
         <h1 class="heading-9">L</h1>
-        <a href="cart" class="button w-button">カートに追加する</a>
+        <a href="{{ route('cart.index') }}" class="button w-button">カートに追加する</a>
       </div>
       <div class="w-layout-hflex">
         <h1 class="heading-14">XL</h1>
-        <a href="cart" class="button w-button">カートに追加する</a>
+        <a href="{{ route('cart.index') }}" class="button w-button">カートに追加する</a>
       </div>
     </div>
 </div>

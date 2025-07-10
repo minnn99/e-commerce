@@ -1,6 +1,6 @@
 <img src="images/jacket.png" sizes="80px" class="image-5">
 <div class="w-layout-vflex flex-block-3">
-    <a href="item" class="link-11">fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</a>
+    <a href="{{ route('products.show', ['id' => 1]) }}" class="link-11">fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</a>
     <div class="text-block-5">￥XXXXXXXXXXX(税込み)</div>
     @if(isset($delete) && $delete)
     <a href="#" class="link-12">削除</a>

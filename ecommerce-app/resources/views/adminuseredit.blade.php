@@ -5,7 +5,8 @@
   </div>
   <div class="w-layout-blockcontainer container-35 w-container">
     <div class="w-form">
-      <form action="admin" method="get">
+      <form action="{{ route('admin.user.store') }}" method="post">
+        @csrf
         <label>ユーザー名</label>
         <input class="w-input" maxlength="256" name="name">
         <label>メールアドレス</label>
@@ -26,7 +27,7 @@
           <option value="1">管理者</option>
         </select>
         <div class="div-block-11">
-          <a href="admin" class="button-17 w-button">戻る</a>
+          <a href="{{ route('admin.dashboard') }}" class="button-17 w-button">戻る</a>
           <input type="submit" class="submit-button-6 w-button" value="登録">
         </div>
       </form>

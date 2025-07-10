@@ -38,7 +38,7 @@
         <div>FFFFFFFF</div>
     </div>
     <div class="w-layout-cell">
-        <a href="adminitemedit" class="button-13 w-button">編集</a>
+        <a href="{{ route('admin.item.edit') }}" class="button-13 w-button">編集</a>
     </div>
     <div class="w-layout-cell">
         <a href="#" class="button-14 w-button">削除</a>

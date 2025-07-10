@@ -3,7 +3,10 @@
   <section class="section-5">
     <h1 class="heading-21">ADMIN画面</h1>
     <div class="div-block-8">
-            <a href="adminlogin" class="button-9 w-button" style="margin-right:50px;">ログアウト</a>
+            <form action="{{ route('admin.logout') }}" method="post" style="display: inline;">
+                @csrf
+                <button type="submit" class="button-9 w-button" style="margin-right:50px;">ログアウト</button>
+            </form>
     </div>
   </section>
   <div data-current="Tab 1" data-easing="ease" data-duration-in="300" data-duration-out="100" class="tabs w-tabs">
@@ -25,7 +28,7 @@
             <h1>■商品管理</h1>
           </div>
           <div class="div-block-8">
-            <a href="adminitemedit" class="button-9 w-button">新規追加</a>
+            <a href="{{ route('admin.item.edit') }}" class="button-9 w-button">新規追加</a>
           </div>
         </div>
         <section>
@@ -48,7 +51,7 @@
             <h1>■ユーザー管理</h1>
           </div>
           <div class="div-block-8">
-            <a href="adminuseredit" class="button-9 w-button">新規追加</a>
+            <a href="{{ route('admin.user.edit') }}" class="button-9 w-button">新規追加</a>
           </div>
         </div>
         <section>

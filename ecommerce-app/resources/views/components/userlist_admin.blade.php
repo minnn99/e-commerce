@@ -45,6 +45,6 @@
         <div>FFF</div>
     </div>
     <div class="w-layout-cell">
-        <a href="adminuseredit" class="button-13 w-button">編集</a>
+        <a href="{{ route('admin.user.edit') }}" class="button-13 w-button">編集</a>
     </div>
 </div>
