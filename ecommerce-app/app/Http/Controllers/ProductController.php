@@ -9,11 +9,13 @@ class ProductController extends Controller
 {
     public function index()
     {
-        return view('itemlist');
+        $products = Product::orderBy('created_at', 'desc')->get();
+        return view('itemlist', compact('products'));
     }
     
-    public function show($id = null)
+    public function show($id)
     {
-        return view('item');
+        $product = Product::findOrFail($id);
+        return view('item', compact('product'));
     }
 }

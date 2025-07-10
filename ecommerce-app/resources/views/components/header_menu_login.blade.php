@@ -7,7 +7,10 @@
         <nav role="navigation" class="w-nav-menu">
           <a href="/" class="w-nav-link">Home</a>
           <a href="{{ route('products.index') }}" class="w-nav-link">Item</a>
-          <a href="{{ route('user.login') }}" class="w-nav-link">Log out</a>
+          <form method="POST" action="{{ route('user.logout') }}" style="display: inline;">
+            @csrf
+            <button type="submit" class="w-nav-link" style="background: none; border: none; color: inherit; cursor: pointer;">Log out</button>
+          </form>
           <a href="{{ route('cart.index') }}" class="w-nav-link">cart</a>
         </nav>
         <div class="w-nav-button">

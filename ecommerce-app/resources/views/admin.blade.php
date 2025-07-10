@@ -32,7 +32,7 @@
           </div>
         </div>
         <section>
-          <x-itemlist_admin />
+          @include('components.itemlist_admin', ['products' => $products])
         </section>
       </div>
       <div data-w-tab="Tab 2" class="w-tab-pane">
@@ -42,7 +42,7 @@
           </div>
         </div>
         <section>
-          <x-saleslist_admin />
+          @include('components.saleslist_admin')
         </section>
       </div>
       <div data-w-tab="Tab 3" class="w-tab-pane w--tab-active">
@@ -55,7 +55,7 @@
           </div>
         </div>
         <section>
-          <x-userlist_admin />
+          @include('components.userlist_admin', ['users' => $users])
         </section>
       </div>
     </div>

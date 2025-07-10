@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cart extends Model
 {
+    // Disable timestamps since the table doesn't have created_at/updated_at
+    public $timestamps = false;
+    
     protected $fillable = [
         'product_id',
         'user_id',

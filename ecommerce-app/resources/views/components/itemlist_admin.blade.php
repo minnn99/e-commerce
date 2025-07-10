@@ -1,46 +1,38 @@
-<div id="w-node-ef150e1e-10b5-3b56-2990-7c2d6ae0fe0b-26605386" class="w-layout-layout quick-stack wf-layout-layout">
-    <div class="w-layout-cell">
-        <div>ID</div>
-    </div>
-    <div class="w-layout-cell">
-        <div>名前</div>
-    </div>
-    <div class="w-layout-cell">
-        <div>税込み値段</div>
-    </div>
-    <div class="w-layout-cell">
-        <div>説明</div>
-    </div>
-    <div class="w-layout-cell">
-        <div>商品画像</div>
-    </div>
-    <div class="w-layout-cell">
-        <div>ジャンル</div>
-    </div>
-    <div class="w-layout-cell"></div>
-    <div class="w-layout-cell"></div>
-    <div class="w-layout-cell">
-        <div>XXXX</div>
-    </div>
-    <div class="w-layout-cell">
-        <div>FFFFFFFFFFFFFFFFFFFFFFFFF</div>
-    </div>
-    <div class="w-layout-cell">
-        <div>￥XXXXXXXX</div>
-    </div>
-    <div class="w-layout-cell">
-        <div>FFFFFFFFFFFFFFFFFFFFFFFFF<br>FFFFFFFFFFFFFFFFFFFFFFFFF<br>FFFFFFFFFFFFFFFFFFFFFFFFF</div>
-    </div>
-    <div class="w-layout-cell">
-        <div>FFFFF/FFFFF/FFFFF.png</div>
-    </div>
-    <div class="w-layout-cell">
-        <div>FFFFFFFF</div>
-    </div>
-    <div class="w-layout-cell">
-        <a href="{{ route('admin.item.edit') }}" class="button-13 w-button">編集</a>
-    </div>
-    <div class="w-layout-cell">
-        <a href="#" class="button-14 w-button">削除</a>
-    </div>
+<!-- Product management table -->
+<div style="overflow-x: auto; margin-top: 20px;">
+    <table style="width: 100%; border-collapse: collapse;">
+        <!-- Header row -->
+        <thead>
+            <tr style="background-color: #f5f5dc; border-bottom: 1px solid #000;">
+                <th style="padding: 8px 12px; text-align: left; font-weight: bold; font-size: 14px;">ID</th>
+                <th style="padding: 8px 12px; text-align: left; font-weight: bold; font-size: 14px;">名前</th>
+                <th style="padding: 8px 12px; text-align: left; font-weight: bold; font-size: 14px;">税込み値段</th>
+                <th style="padding: 8px 12px; text-align: left; font-weight: bold; font-size: 14px;">説明</th>
+                <th style="padding: 8px 12px; text-align: left; font-weight: bold; font-size: 14px;">商品画像</th>
+                <th style="padding: 8px 12px; text-align: left; font-weight: bold; font-size: 14px;">ジャンル</th>
+                <th style="padding: 8px 12px; text-align: left; font-weight: bold; font-size: 14px;"></th>
+            </tr>
+        </thead>
+        <!-- Product rows -->
+        <tbody>
+            @foreach($products as $product)
+            <tr style="border-bottom: 1px solid #ddd;">
+                <td style="padding: 8px 12px; font-size: 14px;">{{ $product->id }}</td>
+                <td style="padding: 8px 12px; font-size: 14px;">{{ $product->name }}</td>
+                <td style="padding: 8px 12px; font-size: 14px;">￥{{ number_format($product->val) }}</td>
+                <td style="padding: 8px 12px; font-size: 14px; max-width: 300px;">{{ Str::limit($product->explanation, 50) }}</td>
+                <td style="padding: 8px 12px; font-size: 14px;">{{ $product->picture }}</td>
+                <td style="padding: 8px 12px; font-size: 14px;">{{ $product->genre }}</td>
+                <td style="padding: 8px 12px; font-size: 14px;">
+                    <a href="{{ route('admin.item.edit', $product->id) }}" style="background-color: #007bff; color: white; padding: 4px 8px; text-decoration: none; border-radius: 3px; font-size: 12px; margin-right: 5px;">編集</a>
+                    <form method="POST" action="{{ route('admin.item.delete', $product->id) }}" style="display: inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" onclick="return confirm('この商品を削除しますか？')" style="background-color: #dc3545; color: white; padding: 4px 8px; border: none; border-radius: 3px; font-size: 12px; cursor: pointer;">削除</button>
+                    </form>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 </div>

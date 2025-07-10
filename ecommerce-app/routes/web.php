@@ -14,7 +14,7 @@ Route::get('/item/{id}', [ProductController::class, 'show'])->name('products.sho
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index')->middleware('user.auth');
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add')->middleware('user.auth');
-Route::delete('/cart/{id}', [CartController::class, 'remove'])->name('cart.remove')->middleware('user.auth');
+Route::get('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove')->middleware('user.auth');
 
 // Purchase completion page (requires user authentication)
 Route::get('/paymentcomplete', function () {
@@ -46,10 +46,16 @@ Route::prefix('admin')->group(function () {
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
         Route::post('/logout', [AdminController::class, 'logout'])->name('admin.logout');
         
-        // 管理画面の各機能
-        Route::get('/useredit', [AdminController::class, 'userEdit'])->name('admin.user.edit');
-        Route::post('/useredit', [AdminController::class, 'userStore'])->name('admin.user.store');
-        Route::get('/itemedit', [AdminController::class, 'itemEdit'])->name('admin.item.edit');
+        // 商品管理機能
+        Route::get('/itemedit/{id?}', [AdminController::class, 'itemEdit'])->name('admin.item.edit');
         Route::post('/itemedit', [AdminController::class, 'itemStore'])->name('admin.item.store');
+        Route::put('/itemedit/{id}', [AdminController::class, 'itemUpdate'])->name('admin.item.update');
+        Route::delete('/item/{id}', [AdminController::class, 'itemDelete'])->name('admin.item.delete');
+        
+        // ユーザー管理機能
+        Route::get('/useredit/{id?}', [AdminController::class, 'userEdit'])->name('admin.user.edit');
+        Route::post('/useredit', [AdminController::class, 'userStore'])->name('admin.user.store');
+        Route::put('/useredit/{id}', [AdminController::class, 'userUpdate'])->name('admin.user.update');
+        Route::delete('/user/{id}', [AdminController::class, 'userDelete'])->name('admin.user.delete');
     });
 });

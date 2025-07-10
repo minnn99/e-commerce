@@ -10,7 +10,7 @@
         <label>商品名</label>
         <input class="w-input" maxlength="256" name="name">
         <label>税抜き値段</label>
-        <input class="w-input" maxlength="256" name="value">
+        <input class="w-input" maxlength="256" name="val">
         <label>説明</label>
         <textarea maxlength="5000" id="field" name="explanation" class="w-input"></textarea>
         <label>ジャンル</label>
@@ -26,10 +26,7 @@
           <option value="9">アクセサリー</option>
         </select>
         <label>商品画像</label>
-        <div class="div-block-9">
-          <a href="#" class="button-15 w-button">商品画像</a>
-          <div class="text-block-8">FFFFFFFFFFFFFFFF.png</div>
-        </div>
+        <input class="w-input" maxlength="256" name="picture" placeholder="images/sample.jpg">
         <div class="div-block-10">
           <a href="{{ route('admin.dashboard') }}" class="button-16 w-button">戻る</a>
           <input type="submit" class="submit-button-5 w-button" value="登録">

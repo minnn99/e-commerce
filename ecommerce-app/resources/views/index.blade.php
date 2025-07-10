@@ -5,34 +5,25 @@
   <div class="w-layout-blockcontainer w-container">
     <h1 class="heading-5">■新規商品</h1>
   </div>
+  @php
+  $chunkedProducts = $products->chunk(4);
+  @endphp
+  
+  @foreach($chunkedProducts as $productChunk)
   <div class="w-layout-blockcontainer container-3 w-container">
+    @foreach($productChunk as $product)
     <div class="w-layout-blockcontainer container-9 w-container">
-      <x-item_component />
+        <img src="{{ asset($product->picture) }}" sizes="(max-width: 767px) 37vw, 200px" class="image">
+        <div class="w-layout-vflex">
+          <a href="{{ route('products.show', ['id' => $product->id]) }}">
+          <h2 class="heading-2">{{ $product->name }}</h2>
+          </a>
+          <h2 class="heading-2">￥{{ number_format($product->val) }}(税込み)</h2>
+        </div>
     </div>
-    <div class="w-layout-blockcontainer container-9 w-container">
-      <x-item_component />
-    </div>
-    <div class="w-layout-blockcontainer container-9 w-container">
-      <x-item_component />
-    </div>
-    <div class="w-layout-blockcontainer container-9 w-container">
-      <x-item_component />
-    </div>
+    @endforeach
   </div>
-  <div class="w-layout-blockcontainer container-3 w-container">
-    <div class="w-layout-blockcontainer container-9 w-container">
-      <x-item_component />
-    </div>
-    <div class="w-layout-blockcontainer container-9 w-container">
-      <x-item_component />
-    </div>
-    <div class="w-layout-blockcontainer container-9 w-container">
-      <x-item_component />
-    </div>
-    <div class="w-layout-blockcontainer container-9 w-container">
-      <x-item_component />
-    </div>
-  </div>
+  @endforeach
   <div class="w-layout-blockcontainer w-container">
     <a href="{{ route('products.index') }}" class="link">&lt;他の商品を見る</a>
   </div>

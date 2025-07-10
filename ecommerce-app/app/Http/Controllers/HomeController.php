@@ -9,6 +9,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('index');
+        // Get first 8 products for the homepage
+        $products = Product::orderBy('created_at', 'desc')->take(8)->get();
+        return view('index', compact('products'));
     }
 }

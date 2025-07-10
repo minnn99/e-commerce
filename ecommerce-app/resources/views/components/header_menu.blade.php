@@ -12,7 +12,7 @@
             <span class="w-nav-link">こんにちは、{{ auth()->user()->name }}さん</span>
             <form action="{{ route('user.logout') }}" method="post" style="display: inline;">
               @csrf
-              <button type="submit" class="w-nav-link" style="background: none; border: none; color: inherit; text-decoration: underline; cursor: pointer;">Log out</button>
+              <button type="submit" class="w-nav-link" style="background: none; border: none; color: inherit; cursor: pointer;">Log out</button>
             </form>
           @else
             <a href="{{ route('user.login') }}" class="w-nav-link">Log in</a>

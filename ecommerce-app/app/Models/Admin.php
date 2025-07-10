@@ -13,7 +13,7 @@ class Admin extends Authenticatable
     /**
      * The name of the "created at" column.
      */
-    const CREATED_AT = 'crated_at';
+    const CREATED_AT = 'created_at';
 
     protected $fillable = [
         'name',

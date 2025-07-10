@@ -33,11 +33,11 @@ class UserController extends Controller
             // Get the authenticated user
             $user = Auth::user();
             
-            // Create an access token
-            $token = $user->createToken('auth_token')->plainTextToken;
+            // Create an access token (temporarily commented out)
+            // $token = $user->createToken('auth_token')->plainTextToken;
             
             // Store the token in the session for later use
-            $request->session()->put('api_token', $token);
+            // $request->session()->put('api_token', $token);
             
             return redirect()->intended('/');
         }
@@ -108,6 +108,12 @@ class UserController extends Controller
 
     public function logout(Request $request)
     {
+        // Delete all access tokens for the current user (temporarily commented out)
+        // $user = Auth::user();
+        // if ($user && $user->tokens()) {
+        //     $user->tokens()->delete();
+        // }
+
         Auth::logout();
 
         $request->session()->invalidate();
