@@ -19,12 +19,26 @@ class UserController extends Controller
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
+        ], [
+            'email.required' => 'メールアドレスを入力してください',
+            'email.email' => 'メールアドレス形式で入力してください(XXXX@XXXX.com)',
+            'password.required' => 'パスワードを入力してください',
         ]);
 
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            
+            // Get the authenticated user
+            $user = Auth::user();
+            
+            // Create an access token
+            $token = $user->createToken('auth_token')->plainTextToken;
+            
+            // Store the token in the session for later use
+            $request->session()->put('api_token', $token);
+            
             return redirect()->intended('/');
         }
 
@@ -43,11 +57,24 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|string|max:50',
             'email' => 'required|email|max:150',
-            'tel' => 'required|string|max:15',
-            'post' => 'required|string|max:11',
+            'tel' => 'required|regex:/^[0-9]+$/|max:15',
+            'post' => 'required|regex:/^[0-9]+$/|max:11',
             'address' => 'required|string|max:30',
             'password' => 'required|string|min:8',
             'password_confirm' => 'required|same:password',
+        ], [
+            'name.required' => 'ユーザー名を入力してください',
+            'email.required' => 'メールアドレスを入力してください',
+            'email.email' => 'メールアドレス形式で入力してください(XXXX@XXXX.com)',
+            'tel.required' => '電話番号を入力してください',
+            'tel.regex' => '半角数字で入力してください',
+            'post.required' => '郵便番号を入力してください',
+            'post.regex' => '半角数字で入力してください',
+            'address.required' => '住所を入力してください',
+            'password.required' => 'パスワードを入力してください',
+            'password.min' => 'パスワードは8文字以上入力してください',
+            'password_confirm.required' => 'パスワードを入力してください',
+            'password_confirm.same' => 'パスワードが一致しません',
         ]);
 
         $userData = $request->all();

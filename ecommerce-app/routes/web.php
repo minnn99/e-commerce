@@ -12,9 +12,14 @@ Route::get('/itemlist', [ProductController::class, 'index'])->name('products.ind
 Route::get('/item', [ProductController::class, 'show'])->name('item'); // 暫定的なルート
 Route::get('/item/{id}', [ProductController::class, 'show'])->name('products.show');
 
-Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
-Route::delete('/cart/{id}', [CartController::class, 'remove'])->name('cart.remove');
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index')->middleware('user.auth');
+Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add')->middleware('user.auth');
+Route::delete('/cart/{id}', [CartController::class, 'remove'])->name('cart.remove')->middleware('user.auth');
+
+// Purchase completion page (requires user authentication)
+Route::get('/paymentcomplete', function () {
+    return view('paymentcomplete');
+})->name('payment.complete')->middleware('user.auth');
 
 // User Authentication Routes
 Route::get('/login', [UserController::class, 'showLoginForm'])->name('user.login');
@@ -35,12 +40,16 @@ Route::get('/registrationcomplete', function () {
 Route::prefix('admin')->group(function () {
     Route::get('/login', [AdminController::class, 'loginForm'])->name('admin.login');
     Route::post('/login', [AdminController::class, 'login']);
-    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-    Route::post('/logout', [AdminController::class, 'logout'])->name('admin.logout');
     
-    // 管理画面の各機能
-    Route::get('/useredit', [AdminController::class, 'userEdit'])->name('admin.user.edit');
-    Route::post('/useredit', [AdminController::class, 'userStore'])->name('admin.user.store');
-    Route::get('/itemedit', [AdminController::class, 'itemEdit'])->name('admin.item.edit');
-    Route::post('/itemedit', [AdminController::class, 'itemStore'])->name('admin.item.store');
+    // All admin routes except login require authentication
+    Route::middleware('admin.auth')->group(function () {
+        Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+        Route::post('/logout', [AdminController::class, 'logout'])->name('admin.logout');
+        
+        // 管理画面の各機能
+        Route::get('/useredit', [AdminController::class, 'userEdit'])->name('admin.user.edit');
+        Route::post('/useredit', [AdminController::class, 'userStore'])->name('admin.user.store');
+        Route::get('/itemedit', [AdminController::class, 'itemEdit'])->name('admin.item.edit');
+        Route::post('/itemedit', [AdminController::class, 'itemStore'])->name('admin.item.store');
+    });
 });

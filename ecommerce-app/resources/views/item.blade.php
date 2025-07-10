@@ -2,7 +2,7 @@
 @section('content')
 <div id="w-node-_70fc2f60-eebe-06fa-5f10-7db86abd4630-862eed34" class="w-layout-layout wf-layout-layout container-item">
     <div id="w-node-f77c6ce3-7280-b5af-e927-fd62fe027efb-862eed34" class="w-layout-cell">
-      <img src="images/jacket.png" loading="lazy" sizes="100vw" class="image-3">
+      <img src="/images/jacket.png" loading="lazy" sizes="100vw" class="image-3">
     </div>
     <div id="w-node-_0effb395-4563-c85e-c5da-528ac83e50ce-862eed34" class="w-layout-cell">
       <div class="w-layout-vflex flex-block">

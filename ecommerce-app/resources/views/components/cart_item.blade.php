@@ -1,4 +1,4 @@
-<img src="images/jacket.png" sizes="80px" class="image-5">
+<img src="/images/jacket.png" sizes="80px" class="image-5">
 <div class="w-layout-vflex flex-block-3">
     <a href="{{ route('products.show', ['id' => 1]) }}" class="link-11">fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</a>
     <div class="text-block-5">￥XXXXXXXXXXX(税込み)</div>
@@ -9,7 +9,7 @@
 @if(isset($delete) && $delete)
 <div class="w-layout-blockcontainer container-24 w-container">
     <a href="#">
-        <img src="images/スタンダードなゴミ箱アイコン.png" class="image-7">
+        <img src="/images/スタンダードなゴミ箱アイコン.png" class="image-7">
     </a>
 </div>
 @endif

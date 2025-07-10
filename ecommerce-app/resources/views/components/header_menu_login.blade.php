@@ -2,7 +2,7 @@
     <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav">
       <div class="w-container">
         <a href="#" class="w-nav-brand">
-          <img src="images/Educure.png" class="image-4">
+          <img src="/images/Educure.png" class="image-4">
         </a>
         <nav role="navigation" class="w-nav-menu">
           <a href="/" class="w-nav-link">Home</a>
