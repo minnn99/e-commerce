@@ -27,6 +27,17 @@
         <p>カートに商品がありません。</p>
     </div>
     @endif
+    
+    @if($cartItems->count() > 0)
+    <div class="w-layout-blockcontainer w-container" style="margin-top: 30px;">
+      <h2 class="heading-16">■商品合計</h2>
+      <div style="text-align: left; padding: 1rem 0 1rem 0;">
+        <div style="font-size: 20px; font-weight: bold;">
+          ￥{{ number_format($cartItems->sum(function($item) { return $item->product->val; })) }}(税込み)
+        </div>
+      </div>
+    </div>
+    @endif
   </div>
   <div class="w-layout-blockcontainer container-27 w-container">
     <a href="/" class="button-4 w-button">戻る</a>

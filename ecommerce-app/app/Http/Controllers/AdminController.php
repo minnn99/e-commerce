@@ -72,6 +72,11 @@ class AdminController extends Controller
             'explanation' => 'required|string',
             'picture' => 'nullable|string|max:255',
             'genre' => 'required|string|max:15',
+        ], [
+            'name.required' => '商品名を入力してください',
+            'val.required' => '税抜き価格を入力してください',
+            'val.integer' => '半角数字で入力してください。',
+            'explanation.required' => '説明を入力してください',
         ]);
 
         Product::create([
@@ -95,6 +100,11 @@ class AdminController extends Controller
             'explanation' => 'required|string',
             'picture' => 'nullable|string|max:255',
             'genre' => 'required|string|max:15',
+        ], [
+            'name.required' => '商品名を入力してください',
+            'val.required' => '税抜き価格を入力してください',
+            'val.integer' => '半角数字で入力してください。',
+            'explanation.required' => '説明を入力してください',
         ]);
 
         $product = Product::findOrFail($id);
