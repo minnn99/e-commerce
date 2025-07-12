@@ -11,9 +11,9 @@ class Admin extends Authenticatable
     use Notifiable;
 
     /**
-     * The name of the "created at" column.
+     * Indicates if the model should be timestamped.
      */
-    const CREATED_AT = 'created_at';
+    public $timestamps = true;
 
     protected $fillable = [
         'name',
