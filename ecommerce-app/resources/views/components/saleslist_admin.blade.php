@@ -1,40 +1,29 @@
-<div>
-    <div id="w-node-_9861fc3d-c6c1-6ec9-f263-9439fcac83e9-26605386" class="w-layout-layout quick-stack-2 wf-layout-layout">
-        <div class="w-layout-cell">
-            <div>ID</div>
-        </div>
-        <div class="w-layout-cell">
-            <div>商品ID</div>
-        </div>
-        <div class="w-layout-cell">
-            <div>商品名</div>
-        </div>
-        <div class="w-layout-cell">
-            <div>税抜き値段</div>
-        </div>
-        <div class="w-layout-cell">
-            <div>ユーザーID</div>
-        </div>
-        <div class="w-layout-cell cell">
-            <div>購入日時</div>
-        </div>
-        <div class="w-layout-cell">
-            <div>XXXX</div>
-        </div>
-        <div class="w-layout-cell">
-            <div>XXXX</div>
-        </div>
-        <div class="w-layout-cell">
-            <div>FFFFFFFFFFFFFFF</div>
-        </div>
-        <div class="w-layout-cell">
-            <div>￥XXXXXXXXXXX</div>
-        </div>
-        <div class="w-layout-cell">
-            <div>XXXXXX</div>
-        </div>
-        <div class="w-layout-cell">
-            <div>YYYY/MM/DD hh:mm</div>
-        </div>
-    </div>
+<!-- Sales management table -->
+<div style="overflow-x: auto; margin-top: 20px;">
+    <table style="width: 100%; border-collapse: collapse;">
+        <!-- Header row -->
+        <thead>
+            <tr style="background-color: #f5f5dc; border-bottom: 1px solid #000;">
+                <th style="padding: 8px 12px; text-align: left; font-weight: bold; font-size: 14px;">ID</th>
+                <th style="padding: 8px 12px; text-align: left; font-weight: bold; font-size: 14px;">商品ID</th>
+                <th style="padding: 8px 12px; text-align: left; font-weight: bold; font-size: 14px;">商品名</th>
+                <th style="padding: 8px 12px; text-align: left; font-weight: bold; font-size: 14px;">税抜き値段</th>
+                <th style="padding: 8px 12px; text-align: left; font-weight: bold; font-size: 14px;">ユーザーID</th>
+                <th style="padding: 8px 12px; text-align: left; font-weight: bold; font-size: 14px;">購入日時</th>
+            </tr>
+        </thead>
+        <!-- Sales rows -->
+        <tbody>
+            @foreach($sales as $sale)
+            <tr style="border-bottom: 1px solid #ddd;">
+                <td style="padding: 8px 12px; font-size: 14px;">{{ $sale->id }}</td>
+                <td style="padding: 8px 12px; font-size: 14px;">{{ $sale->product_id }}</td>
+                <td style="padding: 8px 12px; font-size: 14px;">{{ $sale->product->name }}</td>
+                <td style="padding: 8px 12px; font-size: 14px;">￥{{ number_format($sale->product->val) }}</td>
+                <td style="padding: 8px 12px; font-size: 14px;">{{ $sale->user_id }}</td>
+                <td style="padding: 8px 12px; font-size: 14px;">{{ $sale->purchase_at->format('Y/m/d H:i') }}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 </div>

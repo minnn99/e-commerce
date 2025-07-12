@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Admin;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Sale;
 
 class AdminController extends Controller
 {
@@ -41,7 +42,8 @@ class AdminController extends Controller
     {
         $products = Product::orderBy('created_at', 'desc')->get();
         $users = User::all();
-        return view('admin', compact('products', 'users'));
+        $sales = Sale::with(['product', 'user'])->orderBy('purchase_at', 'desc')->get();
+        return view('admin', compact('products', 'users', 'sales'));
     }
 
     public function logout(Request $request)

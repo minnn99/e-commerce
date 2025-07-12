@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PaymentController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/itemlist', [ProductController::class, 'index'])->name('products.index');
@@ -15,6 +16,9 @@ Route::get('/item/{id}', [ProductController::class, 'show'])->name('products.sho
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index')->middleware('user.auth');
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add')->middleware('user.auth');
 Route::get('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove')->middleware('user.auth');
+
+// Payment Routes
+Route::post('/payment/process', [PaymentController::class, 'process'])->name('payment.process')->middleware('user.auth');
 
 // Purchase completion page (requires user authentication)
 Route::get('/paymentcomplete', function () {
@@ -57,5 +61,8 @@ Route::prefix('admin')->group(function () {
         Route::post('/useredit', [AdminController::class, 'userStore'])->name('admin.user.store');
         Route::put('/useredit/{id}', [AdminController::class, 'userUpdate'])->name('admin.user.update');
         Route::delete('/user/{id}', [AdminController::class, 'userDelete'])->name('admin.user.delete');
+        
+        // 売上管理機能
+        Route::get('/sales', [AdminController::class, 'salesList'])->name('admin.sales');
     });
 });

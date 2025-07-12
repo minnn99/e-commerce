@@ -46,7 +46,7 @@ $chunkedProducts = $products->chunk(4);
 <!-- Pagination -->
 @if($products->hasPages())
     <div class="pagination">
-        {{ $products->appends(request()->query())->links() }}
+        {{ $products->links('vendor.pagination.default') }}
     </div>
 @endif
 <!-- End Pagination -->
