@@ -41,6 +41,11 @@
   </div>
   <div class="w-layout-blockcontainer container-27 w-container">
     <a href="/" class="button-4 w-button">戻る</a>
-    <a href="payment" class="button-3 w-button">決済に進む</a>
+    @if($cartItems->count() > 0)
+    <form action="{{ route('payment.checkout') }}" method="POST" style="display: inline;">
+        @csrf
+        <button type="submit" class="button-3 w-button">決済に進む</button>
+    </form>
+    @endif
   </div>
 @endsection

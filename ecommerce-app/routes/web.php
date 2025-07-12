@@ -18,7 +18,8 @@ Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add')->midd
 Route::get('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove')->middleware('user.auth');
 
 // Payment Routes
-Route::post('/payment/process', [PaymentController::class, 'process'])->name('payment.process')->middleware('user.auth');
+Route::post('/payment/checkout', [PaymentController::class, 'createCheckoutSession'])->name('payment.checkout')->middleware('user.auth');
+Route::get('/payment/success', [PaymentController::class, 'success'])->name('payment.success')->middleware('user.auth');
 
 // Purchase completion page (requires user authentication)
 Route::get('/paymentcomplete', function () {
