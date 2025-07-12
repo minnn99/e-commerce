@@ -5,6 +5,8 @@
   <title>educure_eCommerce</title>
   <meta content="width=device-width, initial-scale=1" name="viewport">
   <meta content="Webflow" name="generator">
+  <link rel="icon" href="/favicon.ico?v=1" type="image/x-icon">
+  <link rel="shortcut icon" href="/favicon.ico?v=1" type="image/x-icon">
   <link href="/css/normalize.css" rel="stylesheet" type="text/css">
   <link href="/css/webflow.css" rel="stylesheet" type="text/css">
   <link href="/css/educure-ecommerce.webflow.css" rel="stylesheet" type="text/css">
