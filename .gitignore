@@ -1,1 +1,7 @@
 .claude/
+.env
+ecommerce-app/.env
+vendor/
+node_modules/
+ecommerce-app/vendor/
+ecommerce-app/node_modules/
