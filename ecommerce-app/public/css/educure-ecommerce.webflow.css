@@ -3,6 +3,69 @@
     --black: black;
 }
 
+/* Bootstrap-5 Pagination Styles */
+.pagination {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.page-item {
+    margin: 0 2px;
+}
+
+.page-link {
+    display: block;
+    padding: 8px 12px;
+    text-decoration: none;
+    border: 1px solid #dee2e6;
+    color: #007bff;
+    background-color: #fff;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.page-link:hover {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+    color: #0056b3;
+}
+
+.page-item.active .page-link {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.page-item.disabled .page-link {
+    color: #6c757d;
+    background-color: #fff;
+    border-color: #dee2e6;
+    cursor: not-allowed;
+}
+
+.page-item.disabled .page-link:hover {
+    background-color: #fff;
+    border-color: #dee2e6;
+    color: #6c757d;
+}
+
+/* Responsive pagination info text */
+.small {
+    font-size: 0.875rem;
+}
+
+.text-muted {
+    color: #6c757d;
+}
+
+.fw-semibold {
+    font-weight: 600;
+}
+
 .w-layout-blockcontainer {
     max-width: 940px;
     margin-left: auto;

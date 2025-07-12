@@ -43,15 +43,11 @@ $chunkedProducts = $products->chunk(4);
     @endforeach
 </div>
 @endforeach
-<div class="w-layout-blockcontainer container-3 w-container paginate">
-  <div class="w-layout-hflex flex-block-2">
-      <a href="#" class="link-4">&lt;</a>
-      <a href="#" class="link-5">1</a>
-      <a href="#" class="link-6">2</a>
-      <a href="#" class="link-7">3</a>
-      <div class="text-block-2">....</div>
-      <a href="#" class="link-8">8</a>
-      <a href="#" class="link-9">&gt;</a>
-  </div>
-</div>
+<!-- Pagination -->
+@if($products->hasPages())
+    <div class="pagination">
+        {{ $products->links('vendor.pagination.bootstrap-5') }}
+    </div>
+@endif
+<!-- End Pagination -->
 @endsection
