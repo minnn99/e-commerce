@@ -36,7 +36,7 @@ class ProductController extends Controller
             }
         }
         
-        $products = $query->get();
+        $products = $query->paginate(8);
         $selectedGenre = $request->genre ?? ($selectedGenre ?? null);
         
         return view('itemlist', compact('products', 'selectedGenre'));

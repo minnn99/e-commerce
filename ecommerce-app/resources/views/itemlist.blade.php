@@ -2,7 +2,7 @@
 @section('content') 
 <div class="w-layout-blockcontainer container-22 w-container">
     @if(isset($selectedGenre) && $selectedGenre)
-    <h3 style="margin-bottom: 10px;">{{ $selectedGenre }}の商品 ({{ $products->count() }}件)</h3>
+    <h3 style="margin-bottom: 10px;">{{ $selectedGenre }}の商品 ({{ $products->total() }}件)</h3>
     @endif
     <div class="w-form">
       <form id="email-form" name="email-form" data-name="Email Form" method="get" action="{{ route('products.index') }}" class="form" data-wf-page-id="65de85138eaba875c01e5763" data-wf-element-id="8f53273e-d595-33a3-00d4-0c07fb6242f2"><label for="field">ジャンル</label>
