@@ -6,7 +6,9 @@
     <h1 class="heading-5">■新規商品</h1>
   </div>
   @php
-  $chunkedProducts = $products->chunk(4);
+  // SP: 2行3列なので3個ずつチャンク, PC: 2行4列なので4個ずつチャンク
+  $chunkSize = isset($isMobile) && $isMobile ? 3 : 4;
+  $chunkedProducts = $products->chunk($chunkSize);
   @endphp
   
   @foreach($chunkedProducts as $productChunk)
