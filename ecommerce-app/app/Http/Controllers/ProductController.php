@@ -36,10 +36,14 @@ class ProductController extends Controller
             }
         }
         
-        $products = $query->paginate(8);
+        // Check if mobile device
+        $isMobile = preg_match('/Mobile|Android|iPhone|iPad/', $request->header('User-Agent'));
+        
+        // PC: 16 items (4行4列), SP: 16 items (8行2列) - 資料通り
+        $products = $query->paginate(16);
         $selectedGenre = $request->genre ?? ($selectedGenre ?? null);
         
-        return view('itemlist', compact('products', 'selectedGenre'));
+        return view('itemlist', compact('products', 'selectedGenre', 'isMobile'));
     }
     
     public function show($id)
