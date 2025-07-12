@@ -133,36 +133,88 @@ class AdminController extends Controller
         $request->validate([
             'name' => 'required|string|max:50',
             'email' => 'required|email|max:150|unique:users',
-            'tel' => 'nullable|string|max:15',
-            'post' => 'nullable|string|max:11',
-            'address' => 'nullable|string|max:30',
+            'tel' => 'required|regex:/^[0-9]+$/|max:15',
+            'post' => 'required|regex:/^[0-9]+$/|max:11',
+            'address' => 'required|string|max:30',
             'password' => 'required|string|min:8',
+            'password_confirmation' => 'required|same:password',
+            'user_type' => 'required|in:0,1',
+        ], [
+            'name.required' => 'ユーザー名を入力してください',
+            'email.required' => 'メールアドレスを入力してください',
+            'email.email' => 'メールアドレス形式で入力してください(XXXX@XXXX.com)',
+            'email.unique' => 'このメールアドレスは既に使用されています',
+            'tel.required' => '電話番号を入力してください',
+            'tel.regex' => '半角数字で入力してください',
+            'post.required' => '郵便番号を入力してください',
+            'post.regex' => '半角数字で入力してください',
+            'address.required' => '住所を入力してください',
+            'password.required' => 'パスワードを入力してください',
+            'password.min' => 'パスワードは8文字以上入力してください',
+            'password_confirmation.required' => 'パスワード確認を入力してください',
+            'password_confirmation.same' => 'パスワードが一致しません',
+            'user_type.required' => 'ユーザー種別を選択してください',
+            'user_type.in' => 'ユーザー種別は一般または管理者を選択してください',
         ]);
 
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'tel' => $request->tel,
-            'post' => $request->post,
-            'address' => $request->address,
-            'password' => Hash::make($request->password),
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        if ($request->user_type == '1') {
+            Admin::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+            $message = '管理者を登録しました';
+        } else {
+            User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'tel' => $request->tel,
+                'post' => $request->post,
+                'address' => $request->address,
+                'password' => Hash::make($request->password),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+            $message = 'ユーザーを登録しました';
+        }
 
-        return redirect()->route('admin.dashboard')->with('success', 'ユーザーを登録しました');
+        return redirect()->route('admin.dashboard')->with('success', $message);
     }
 
     public function userUpdate(Request $request, $id)
     {
-        $request->validate([
+        $validationRules = [
             'name' => 'required|string|max:50',
             'email' => 'required|email|max:150|unique:users,email,'.$id,
-            'tel' => 'nullable|string|max:15',
-            'post' => 'nullable|string|max:11',
-            'address' => 'nullable|string|max:30',
-            'password' => 'nullable|string|min:8',
-        ]);
+            'tel' => 'required|regex:/^[0-9]+$/|max:15',
+            'post' => 'required|regex:/^[0-9]+$/|max:11',
+            'address' => 'required|string|max:30',
+        ];
+        
+        $validationMessages = [
+            'name.required' => 'ユーザー名を入力してください',
+            'email.required' => 'メールアドレスを入力してください',
+            'email.email' => 'メールアドレス形式で入力してください(XXXX@XXXX.com)',
+            'email.unique' => 'このメールアドレスは既に使用されています',
+            'tel.required' => '電話番号を入力してください',
+            'tel.regex' => '半角数字で入力してください',
+            'post.required' => '郵便番号を入力してください',
+            'post.regex' => '半角数字で入力してください',
+            'address.required' => '住所を入力してください',
+        ];
+
+        if ($request->filled('password')) {
+            $validationRules['password'] = 'required|string|min:8';
+            $validationRules['password_confirmation'] = 'required|same:password';
+            $validationMessages['password.required'] = 'パスワードを入力してください';
+            $validationMessages['password.min'] = 'パスワードは8文字以上入力してください';
+            $validationMessages['password_confirmation.required'] = 'パスワード確認を入力してください';
+            $validationMessages['password_confirmation.same'] = 'パスワードが一致しません';
+        }
+
+        $request->validate($validationRules, $validationMessages);
 
         $user = User::findOrFail($id);
         $updateData = [
