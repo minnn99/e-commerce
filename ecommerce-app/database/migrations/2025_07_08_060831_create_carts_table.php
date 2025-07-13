@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->nullable()->constrained()->onDelete('cascade');
-            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
-            $table->timestamp('cart_at')->useCurrent();
-            $table->timestamps();
+            $table->integer('product_id')->nullable();
+            $table->integer('user_id')->nullable();
+            $table->timestamp('cart_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

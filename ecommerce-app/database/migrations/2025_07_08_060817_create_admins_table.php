@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('post', 11)->nullable();
             $table->string('address', 30)->nullable();
             $table->string('password', 300);
-            $table->timestamps();
+            $table->timestamp('crated_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 
